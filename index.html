@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiftora Global Solutions - Scale Your E-commerce Empire</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',     // Deepest background
+                            primary: '#16213E',  // Primary dark
+                            accent: '#FF8800',   // Vibrant Orange
+                            accentHover: '#FF6600',
+                            light: '#F3F4F6'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for things Tailwind doesn't cover easily */
+        body {
+            background-color: #FAFAFA;
+            color: #1F2937;
+        }
+        
+        .glass-nav {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FF8800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-dark {
+            background: linear-gradient(135deg, #16213E 0%, #FF8800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Scroll Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Abstract Background Pattern */
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 bg-gradient-to-br from-brand-accent to-orange-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="package" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-white text-xl font-bold tracking-tight">Shiftora <span class="text-brand-accent">Global Solutions</span></span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">Services</a>
+                    <a href="#about" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">About</a>
+                    <a href="#process" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">Process</a>
+                    <a href="#testimonials" class="text-gray-300 hover:text-white text-sm font-medium transition-colors">Testimonials</a>
+                    <a href="#contact" class="bg-brand-accent hover:bg-brand-accentHover text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-orange-500/25 hover:-translate-y-0.5">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-t border-gray-800 absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#services" class="block px-3 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-md text-base font-medium">Services</a>
+                <a href="#about" class="block px-3 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-md text-base font-medium">About</a>
+                <a href="#process" class="block px-3 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-md text-base font-medium">Process</a>
+                <a href="#testimonials" class="block px-3 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-md text-base font-medium">Testimonials</a>
+                <a href="#contact" class="block mt-4 w-full text-center bg-brand-accent text-white px-3 py-3 rounded-md text-base font-bold">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative bg-brand-dark min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-accent/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-8 text-center z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8 reveal">
+                <span class="flex h-2 w-2 rounded-full bg-brand-accent animate-pulse"></span>
+                <span class="text-brand-accent text-sm font-semibold tracking-wide uppercase">🚀 Trusted by 500+ E-commerce Brands</span>
+            </div>
+            
+            <!-- Headline -->
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-tight mb-6 reveal" style="transition-delay: 100ms;">
+                Scale Your <br />
+                <span class="text-gradient">E-commerce Empire</span>
+            </h1>
+            
+            <!-- Subheadline -->
+            <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-10 leading-relaxed reveal" style="transition-delay: 200ms;">
+                We help ambitious brands launch, grow, and dominate their markets through strategic consulting, cutting-edge marketing, and data-driven optimization.
+            </p>
+            
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16 reveal" style="transition-delay: 300ms;">
+                <a href="#contact" class="bg-brand-accent hover:bg-brand-accentHover text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl shadow-orange-500/20 flex items-center justify-center gap-2 hover:-translate-y-1">
+                    Start Your Growth Journey <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#services" class="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all border border-white/10 backdrop-blur-sm flex items-center justify-center">
+                    Explore Services
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto border-t border-white/10 pt-10 reveal" style="transition-delay: 400ms;">
+                <div class="text-center p-4 rounded-2xl hover:bg-white/5 transition-colors">
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">$50M+</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider font-semibold">Revenue Generated</div>
+                </div>
+                <div class="text-center p-4 rounded-2xl hover:bg-white/5 transition-colors">
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">100+</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider font-semibold">Brands Scaled</div>
+                </div>
+                <div class="text-center p-4 rounded-2xl hover:bg-white/5 transition-colors">
+                    <div class="text-4xl md:text-5xl font-bold text-white mb-2">3x</div>
+                    <div class="text-sm text-gray-400 uppercase tracking-wider font-semibold">Average ROI</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-wider text-sm uppercase">What We Do</span>
+                <h2 class="mt-3 text-3xl md:text-5xl font-bold text-brand-primary">End-to-End E-commerce Solutions</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto text-lg">From launch to scale, we provide comprehensive services tailored to your unique business needs</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="rocket" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-3">Launch Strategy</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Go from idea to market with a battle-tested launch plan that captures attention and drives initial sales momentum.</p>
+                    <a href="#" class="text-brand-accent font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-400 to-pink-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-3">Scale & Growth</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Proven frameworks to take your business from 6 to 7 figures and beyond with sustainable growth strategies.</p>
+                    <a href="#" class="text-brand-accent font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="target" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-3">Optimization</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Data-driven conversion optimization, funnel refinement, and customer journey mapping for maximum ROI.</p>
+                    <a href="#" class="text-brand-accent font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-500 to-rose-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-pink-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="smartphone" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-3">Marketing</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Full-stack marketing strategies including paid media, email, SMS, and influencer partnerships.</p>
+                    <a href="#" class="text-brand-accent font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-indigo-600 text-white flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="message-square" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-3">Advertising</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">ROI-focused paid media campaigns across Meta, Google, TikTok, and emerging platforms.</p>
+                    <a href="#" class="text-brand-accent font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 group reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 text-white flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/20 group-hover:scale-110 transition-transform">
+                        <i data-lucide="users" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-primary mb-3">Consulting</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Strategic advisory services with seasoned experts to navigate growth challenges.</p>
+                    <a href="#" class="text-brand-accent font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">Learn more <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Growth Partner Section -->
+    <section id="about" class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+                
+                <!-- Content -->
+                <div class="mb-12 lg:mb-0 reveal">
+                    <h2 class="text-3xl md:text-5xl font-bold text-brand-primary mb-6">
+                        Your Growth Partner, <br />
+                        <span class="text-brand-accent">Not Just a Vendor</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        At Shiftora Global Solutions, we don't believe in one-size-fits-all approaches. We immerse ourselves in your business, understand your unique challenges, and craft bespoke strategies that deliver measurable results.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-accent/10 text-brand-accent flex items-center justify-center font-bold text-lg">1</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">Proven Track Record</h4>
+                                <p class="text-gray-600">We've helped 100+ brands achieve profitable growth with sustainable results.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-accent/10 text-brand-accent flex items-center justify-center font-bold text-lg">2</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">Full Implementation</h4>
+                                <p class="text-gray-600">We don't just create plans and walk away. We work alongside you to ensure successful execution.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-accent/10 text-brand-accent flex items-center justify-center font-bold text-lg">3</div>
+                            <div>
+                                <h4 class="text-lg font-bold text-brand-primary">Data Driven Decisions</h4>
+                                <p class="text-gray-600">Every strategy is backed by analytics and real performance data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual -->
+                <div class="relative reveal">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-20 blur-2xl"></div>
+                    <div class="relative bg-gradient-to-br from-brand-primary to-brand-dark rounded-2xl p-1 border border-gray-800 shadow-2xl h-[500px] flex items-center justify-center overflow-hidden">
+                        <!-- Abstract Dashboard UI Representation -->
+                        <div class="w-full h-full bg-brand-dark/50 backdrop-blur-sm p-8 flex flex-col justify-between">
+                            <div class="flex justify-between items-center border-b border-white/10 pb-6">
+                                <div class="space-y-2">
+                                    <div class="h-2 w-24 bg-gray-700 rounded"></div>
+                                    <div class="h-8 w-40 bg-white/20 rounded"></div>
+                                </div>
+                                <div class="h-10 w-10 bg-brand-accent rounded-full flex items-center justify-center">
+                                    <i data-lucide="bar-chart-2" class="text-white w-6 h-6"></i>
+                                </div>
+                            </div>
+                            <!-- Bars -->
+                            <div class="flex items-end justify-between gap-4 h-48 mt-8">
+                                <div class="w-full bg-gray-800 rounded-t-lg h-[30%]"></div>
+                                <div class="w-full bg-gray-800 rounded-t-lg h-[50%]"></div>
+                                <div class="w-full bg-gray-800 rounded-t-lg h-[40%]"></div>
+                                <div class="w-full bg-gray-800 rounded-t-lg h-[70%]"></div>
+                                <div class="w-full bg-brand-accent rounded-t-lg h-[90%] shadow-[0_0_20px_rgba(255,136,0,0.4)]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-24 bg-brand-primary relative">
+        <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-5xl font-bold text-white">How We Drive Your Success</h2>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">A proven methodology refined over years of helping e-commerce brands scale</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent opacity-30"></div>
+
+                <!-- Step 1 -->
+                <div class="relative text-center reveal">
+                    <div class="w-24 h-24 mx-auto bg-brand-dark border-4 border-brand-accent rounded-full flex items-center justify-center text-3xl font-bold text-white mb-6 shadow-lg shadow-brand-accent/20 z-10 relative">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-accent mb-3">Discovery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Deep dive into your brand, market, and competition to understand the full picture.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-24 h-24 mx-auto bg-brand-dark border-4 border-brand-accent rounded-full flex items-center justify-center text-3xl font-bold text-white mb-6 shadow-lg shadow-brand-accent/20 z-10 relative">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-accent mb-3">Strategy</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Craft a comprehensive growth plan tailored to your goals and budget.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-24 h-24 mx-auto bg-brand-dark border-4 border-brand-accent rounded-full flex items-center justify-center text-3xl font-bold text-white mb-6 shadow-lg shadow-brand-accent/20 z-10 relative">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-accent mb-3">Execution</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Implement strategies with precision, keeping you informed every step of the way.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative text-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-24 h-24 mx-auto bg-brand-dark border-4 border-brand-accent rounded-full flex items-center justify-center text-3xl font-bold text-white mb-6 shadow-lg shadow-brand-accent/20 z-10 relative">
+                        4
+                    </div>
+                    <h3 class="text-xl font-bold text-brand-accent mb-3">Optimize</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Continuously test, measure, and refine to maximize your ROI and drive growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-wider text-sm uppercase">Trusted by</span>
+                <h2 class="mt-3 text-3xl md:text-5xl font-bold text-brand-primary">Industry Leaders</h2>
+                <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what our clients have to say.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col reveal">
+                    <div class="flex gap-1 mb-6 text-brand-accent">
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-8 flex-grow leading-relaxed">"Shiftora Global Solutions transformed our business. We went from $50K to $1.2M in revenue within 8 months. Their team truly understands e-commerce."</p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-gray-100 pt-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold">SM</div>
+                        <div>
+                            <div class="font-bold text-brand-primary">Sarah Miller</div>
+                            <div class="text-xs text-gray-500">CEO, Beauty Brand</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col reveal" style="transition-delay: 100ms;">
+                    <div class="flex gap-1 mb-6 text-brand-accent">
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-8 flex-grow leading-relaxed">"The strategic insights and execution support we received was game-changing. ROI improved by 300% and customer acquisition costs dropped significantly."</p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-gray-100 pt-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 flex items-center justify-center text-white font-bold">MT</div>
+                        <div>
+                            <div class="font-bold text-brand-primary">Marcus Thompson</div>
+                            <div class="text-xs text-gray-500">Founder, Fashion Label</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col reveal" style="transition-delay: 200ms;">
+                    <div class="flex gap-1 mb-6 text-brand-accent">
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                        <i data-lucide="star" class="fill-current w-5 h-5"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-8 flex-grow leading-relaxed">"Working with Shiftora Global Solutions was the best decision for our brand. They're responsive, data-driven, and genuinely care about our success."</p>
+                    <div class="flex items-center gap-4 mt-auto border-t border-gray-100 pt-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold">EP</div>
+                        <div>
+                            <div class="font-bold text-brand-primary">Emily Park-Lopez</div>
+                            <div class="text-xs text-gray-500">Director, Wellness Brand</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 bg-brand-dark relative overflow-hidden">
+        <!-- Decorative blobs -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center reveal">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Scale Your Business?</h2>
+            <p class="text-xl text-gray-400 mb-10">Let's discuss how Shiftora Global Solutions can help you achieve your e-commerce goals. Fill out the form below to get started on your journey to success.</p>
+            
+            <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onsubmit="handleSubmit(event)">
+                <input type="email" placeholder="Enter your email" required class="flex-1 bg-white/10 border border-white/20 rounded-full px-6 py-4 text-white placeholder-gray-400 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all">
+                <button type="submit" class="bg-brand-accent hover:bg-brand-accentHover text-white font-bold px-8 py-4 rounded-full transition-all shadow-lg shadow-orange-500/20 transform hover:-translate-y-1">
+                    Send Message <span class="ml-1">→</span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#05080f] border-t border-gray-900 py-12 text-gray-400">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-gray-900 pb-8 mb-8">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center text-white">
+                        <i data-lucide="package" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-white font-bold text-lg">Shiftora Global Solutions</span>
+                </div>
+                
+                <div class="flex gap-8">
+                    <a href="#services" class="hover:text-brand-accent transition-colors">Services</a>
+                    <a href="#about" class="hover:text-brand-accent transition-colors">About</a>
+                    <a href="#process" class="hover:text-brand-accent transition-colors">Process</a>
+                    <a href="#testimonials" class="hover:text-brand-accent transition-colors">Testimonials</a>
+                </div>
+            </div>
+            
+            <div class="text-center text-sm text-gray-600">
+                &copy; 2024 Shiftora Global Solutions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Form Handling
+        function handleSubmit(event) {
+            event.preventDefault();
+            const button = event.target.querySelector('button');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = 'Sent!';
+            button.classList.remove('bg-brand-accent');
+            button.classList.add('bg-green-600');
+            
+            setTimeout(() => {
+                alert('Thank you for your interest! We will contact you soon.');
+                event.target.reset();
+                button.innerHTML = originalText;
+                button.classList.add('bg-brand-accent');
+                button.classList.remove('bg-green-600');
+            }, 500);
+        }
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
