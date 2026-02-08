@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiftora Global Solutions</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            850: '#151f32',
+                            950: '#020617',
+                        }
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #e2e8f0; /* slate-200 */
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(30, 41, 59, 0.8);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-indigo-500 rounded-lg transform rotate-45 flex items-center justify-center flex-shrink-0 shadow-lg shadow-indigo-500/50">
+                    <div class="w-4 h-4 bg-white transform -rotate-45 rounded-sm"></div>
+                </div>
+                <span class="text-lg md:text-2xl font-bold text-white tracking-tight whitespace-nowrap">Shiftora Global Solutions</span>
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#capabilities" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Capabilities</a>
+                <a href="#process" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Process</a>
+                <a href="#results" class="text-slate-300 hover:text-white transition-colors text-sm font-medium">Results</a>
+                <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg shadow-indigo-600/25">
+                    Book Strategy Call
+                </button>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden text-white">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-t border-slate-800 absolute w-full left-0 top-full">
+            <div class="flex flex-col p-6 gap-4">
+                <a href="#capabilities" class="text-slate-300 hover:text-white text-lg mobile-link">Capabilities</a>
+                <a href="#process" class="text-slate-300 hover:text-white text-lg mobile-link">Process</a>
+                <a href="#results" class="text-slate-300 hover:text-white text-lg mobile-link">Results</a>
+                <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium w-full mobile-link">
+                    Book Strategy Call
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background Gradients -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
+            <!-- Hero Content -->
+            <div class="fade-in-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-300 text-sm font-medium mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                    </span>
+                    Accepting Q4 Partners
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-bold text-white leading-[1.1] mb-6">
+                    Engineering the <br />
+                    <span class="gradient-text">Commerce Future</span>
+                </h1>
+                <p class="text-lg text-slate-400 mb-8 max-w-lg leading-relaxed">
+                    Shiftora Global Solutions merges proprietary algorithmic data with elite creative production to scale DTC brands past the 8-figure threshold.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="document.getElementById('contact').scrollIntoView()" class="bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
+                        Start Scaling Now <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="document.getElementById('capabilities').scrollIntoView()" class="px-8 py-4 rounded-full font-bold text-white border border-slate-700 hover:bg-slate-800 transition-colors">
+                        Explore Our Stack
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Graphic/Chart -->
+            <div class="relative fade-in-scale">
+                <div class="glass-panel rounded-2xl p-6 shadow-2xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <p class="text-slate-400 text-sm">Total Revenue (YTD)</p>
+                            <h3 class="text-3xl font-bold text-white">$4,285,920</h3>
+                        </div>
+                        <div class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+                            <i data-lucide="trending-up" class="w-4 h-4"></i> +124%
+                        </div>
+                    </div>
+                    <!-- Chart Container -->
+                    <div class="h-64 w-full relative">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Floating Card -->
+                <div class="absolute -bottom-6 -left-6 bg-slate-800 p-4 rounded-xl shadow-xl border border-slate-700 flex items-center gap-3 animate-bounce-slow z-20">
+                    <div class="bg-green-500 rounded-full p-2">
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-white"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400">ROAS Target Hit</p>
+                        <p class="text-white font-bold">4.5x Achieved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="bg-slate-900 border-y border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="flex justify-center mb-3 text-indigo-500"><i data-lucide="trending-up" class="w-8 h-8"></i></div>
+                <h3 class="text-4xl font-bold text-white mb-1">$150M+</h3>
+                <p class="text-slate-400 text-sm uppercase tracking-wider">Revenue Generated</p>
+            </div>
+            <div class="text-center">
+                <div class="flex justify-center mb-3 text-indigo-500"><i data-lucide="target" class="w-8 h-8"></i></div>
+                <h3 class="text-4xl font-bold text-white mb-1">4.8x</h3>
+                <p class="text-slate-400 text-sm uppercase tracking-wider">Average ROAS</p>
+            </div>
+            <div class="text-center">
+                <div class="flex justify-center mb-3 text-indigo-500"><i data-lucide="users" class="w-8 h-8"></i></div>
+                <h3 class="text-4xl font-bold text-white mb-1">90+</h3>
+                <p class="text-slate-400 text-sm uppercase tracking-wider">Partners Scaled</p>
+            </div>
+            <div class="text-center">
+                <div class="flex justify-center mb-3 text-indigo-500"><i data-lucide="zap" class="w-8 h-8"></i></div>
+                <h3 class="text-4xl font-bold text-white mb-1">24/7</h3>
+                <p class="text-slate-400 text-sm uppercase tracking-wider">Optimization</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="capabilities" class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">The Shiftora Ecosystem</h2>
+                <p class="text-slate-400 text-lg">
+                    We don't just "run ads." We architect comprehensive digital environments designed for sustainable, long-term profitability and asset value.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Data Architecture</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">We don't guess. We build custom pixel tracking and attribution models to reveal the truth behind your numbers.</p>
+                    <a href="#contact" class="inline-flex items-center text-indigo-400 font-semibold text-sm hover:text-indigo-300 group-hover:translate-x-1 transition-transform">
+                        Analyze Data <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <!-- Service 2 -->
+                <div class="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="layers" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Growth Acquisition</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">Aggressive testing frameworks across Meta, TikTok, and Google to uncover winning creative angles rapidly.</p>
+                    <a href="#contact" class="inline-flex items-center text-indigo-400 font-semibold text-sm hover:text-indigo-300 group-hover:translate-x-1 transition-transform">
+                        Scale Traffic <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <!-- Service 3 -->
+                <div class="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Conversion Engineering</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">Traffic is expensive. We optimize your landing pages and offer structures to maximize AOV and conversion rate.</p>
+                    <a href="#contact" class="inline-flex items-center text-indigo-400 font-semibold text-sm hover:text-indigo-300 group-hover:translate-x-1 transition-transform">
+                        Boost CR <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <!-- Service 4 -->
+                <div class="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Lifecycle Retention</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">Automated SMS and Email flows that transform one-time purchasers into lifetime brand loyalists.</p>
+                    <a href="#contact" class="inline-flex items-center text-indigo-400 font-semibold text-sm hover:text-indigo-300 group-hover:translate-x-1 transition-transform">
+                        Increase LTV <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <!-- Service 5 -->
+                <div class="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="video" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Creative Foundry</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">High-performance UGC and motion graphics designed specifically for direct response and high CTR.</p>
+                    <a href="#contact" class="inline-flex items-center text-indigo-400 font-semibold text-sm hover:text-indigo-300 group-hover:translate-x-1 transition-transform">
+                        View Portfolio <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+                <!-- Service 6 -->
+                <div class="group bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition-all hover:shadow-2xl hover:shadow-indigo-500/10">
+                    <div class="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-indigo-400 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                        <i data-lucide="globe" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Global Infrastructure</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">Scaling beyond borders? We handle localization, currency, and logistics strategy for international markets.</p>
+                    <a href="#contact" class="inline-flex items-center text-indigo-400 font-semibold text-sm hover:text-indigo-300 group-hover:translate-x-1 transition-transform">
+                        Expand Now <i data-lucide="arrow-right" class="ml-1 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section id="process" class="py-24 bg-slate-900 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-indigo-900/10 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">The Growth Cycle</h2>
+                <p class="text-slate-400 text-lg mb-8">
+                    We reject luck. Our success is built on a rigorous, cyclical 4-step process of continuous data ingestion and strategic refinement.
+                </p>
+                
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="text-3xl font-bold text-indigo-500/30 font-mono">01</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Audit & Diagnose</h4>
+                            <p class="text-slate-400">Forensic analysis of your historical data to identify funnel leaks and wasted spend.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="text-3xl font-bold text-indigo-500/30 font-mono">02</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Architect & Build</h4>
+                            <p class="text-slate-400">Developing high-fidelity creative assets, landing pages, and tracking infrastructure.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="text-3xl font-bold text-indigo-500/30 font-mono">03</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Launch & Scale</h4>
+                            <p class="text-slate-400">Deploying campaigns across channels with aggressive budget management protocols.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="text-3xl font-bold text-indigo-500/30 font-mono">04</div>
+                        <div>
+                            <h4 class="text-xl font-bold text-white mb-2">Iterate & Optimize</h4>
+                            <p class="text-slate-400">Rapid A/B testing of new angles based on real-time performance feedback.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-2xl">
+                    <h3 class="text-2xl font-bold text-white mb-6">The Shiftora Advantage</h3>
+                    <p class="text-slate-400 mb-6">
+                        Most agencies treat you like a line item. At Shiftora, we integrate into your Slack, attend your standups, and fight for your margins as if they were our own.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3 text-white">
+                            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                            </div>
+                            Proprietary "Core" Audit Framework
+                        </li>
+                        <li class="flex items-center gap-3 text-white">
+                            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                            </div>
+                            Daily Ad Account Optimization
+                        </li>
+                        <li class="flex items-center gap-3 text-white">
+                            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                            </div>
+                            Direct Access to Senior Buyers
+                        </li>
+                        <li class="flex items-center gap-3 text-white">
+                            <div class="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                            </div>
+                            Creative Strategy Workshops
+                        </li>
+                    </ul>
+                    <button onclick="document.getElementById('contact').scrollIntoView()" class="mt-8 w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-lg font-bold transition-colors">
+                        See How We Work
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="results" class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-bold text-white text-center mb-16">Partner Success Stories</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative">
+                    <div class="text-indigo-500 mb-6">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" /></svg>
+                    </div>
+                    <p class="text-slate-300 mb-8 italic">"Shiftora didn't just run ads; they overhauled our entire unit economics. We went from breaking even to 25% net margins in Q4."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white">ER</div>
+                        <div>
+                            <h4 class="text-white font-bold">Elena Rodriguez</h4>
+                            <p class="text-slate-500 text-sm">Founder, Aura Skincare</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative">
+                    <div class="text-indigo-500 mb-6">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" /></svg>
+                    </div>
+                    <p class="text-slate-300 mb-8 italic">"The retention systems they built added six figures to our bottom line without increasing ad spend. True ecosystem thinkers."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white">MC</div>
+                        <div>
+                            <h4 class="text-white font-bold">Marcus Chen</h4>
+                            <p class="text-slate-500 text-sm">CEO, Velocity Gear</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800 relative">
+                    <div class="text-indigo-500 mb-6">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" /></svg>
+                    </div>
+                    <p class="text-slate-300 mb-8 italic">"Finally, an agency that understands creative strategy. Their video editors are wizards at stopping the scroll."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center font-bold text-white">SJ</div>
+                        <div>
+                            <h4 class="text-white font-bold">Sarah Jenkins</h4>
+                            <p class="text-slate-500 text-sm">CMO, PetLife Direct</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gradient-to-br from-indigo-900 to-slate-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-slate-950 p-8 md:p-12 rounded-3xl border border-slate-800 shadow-2xl">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Shift Your Trajectory?</h2>
+                    <p class="text-slate-400">We only partner with brands we believe we can scale. Fill out the form to qualify for a free audit.</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="event.preventDefault(); alert('Application submitted! We will contact you shortly.');">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Name</label>
+                            <input type="text" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Doe" required />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-400 mb-2">Website URL</label>
+                            <input type="text" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="www.yourbrand.com" required />
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Email Address</label>
+                        <input type="email" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="john@company.com" required />
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Monthly Revenue</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="revenue" class="peer sr-only" />
+                                <div class="text-center py-3 rounded-lg border border-slate-800 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-900 transition-all text-sm">
+                                    &lt; $10k
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="revenue" class="peer sr-only" />
+                                <div class="text-center py-3 rounded-lg border border-slate-800 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-900 transition-all text-sm">
+                                    $10k - $50k
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="revenue" class="peer sr-only" />
+                                <div class="text-center py-3 rounded-lg border border-slate-800 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-900 transition-all text-sm">
+                                    $50k - $100k
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="revenue" class="peer sr-only" />
+                                <div class="text-center py-3 rounded-lg border border-slate-800 text-slate-400 peer-checked:bg-indigo-600 peer-checked:text-white peer-checked:border-indigo-600 hover:bg-slate-900 transition-all text-sm">
+                                    $100k+
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-400 mb-2">Message</label>
+                        <textarea rows="4" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Tell us about your current bottlenecks..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-white text-slate-900 font-bold py-4 rounded-lg hover:bg-indigo-50 transition-colors text-lg">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-indigo-600 rounded-sm transform rotate-45"></div>
+                <span class="text-xl font-bold text-white">Shiftora Global Solutions</span>
+            </div>
+            <div class="text-slate-500 text-sm">
+                © 2026 Shiftora Global Solutions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-slate-900/95', 'backdrop-blur-md', 'shadow-lg', 'py-4');
+                navbar.classList.remove('bg-transparent', 'py-6');
+            } else {
+                navbar.classList.remove('bg-slate-900/95', 'backdrop-blur-md', 'shadow-lg', 'py-4');
+                navbar.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            // Toggle icon
+            const icon = mobileMenu.classList.contains('hidden') ? 'menu' : 'x';
+            mobileBtn.innerHTML = `<i data-lucide="${icon}"></i>`;
+            lucide.createIcons();
+        });
+
+        // Close mobile menu on link click
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileBtn.innerHTML = `<i data-lucide="menu"></i>`;
+                lucide.createIcons();
+            });
+        });
+
+        // Initialize Chart.js
+        const ctx = document.getElementById('revenueChart').getContext('2d');
+        
+        // Create gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, 'rgba(99, 102, 241, 0.4)'); // indigo-500
+        gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [4000, 3000, 5500, 4800, 7200, 9000, 11500],
+                    borderColor: '#6366f1', // indigo-500
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    pointBackgroundColor: '#818cf8',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#6366f1',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#0f172a',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#334155',
+                        borderWidth: 1,
+                        displayColors: false,
+                        padding: 10,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#64748b'
+                        }
+                    },
+                    y: {
+                        display: false,
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
